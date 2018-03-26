@@ -13,3 +13,5 @@ class StackItem(Item):
     # name = scrapy.Field()
     title = Field()
     url = Field()
+    desc = Field()
+    body = Field()
