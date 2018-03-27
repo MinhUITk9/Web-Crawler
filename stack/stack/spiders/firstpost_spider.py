@@ -32,6 +32,7 @@ class Firstpost(Spider):
     
     def parse_content(self,response):
         item = response.meta['item']
-        content = Selector(response).xpath('//div[@class="container article"]')
-        item['body'] = content.xpath('h1[@class="page-title article-title"]/text()').extract()[0]
-        yield item
+        contents = Selector(response).xpath('//div[@class="article-full-content"]')
+        for content in contents:
+            item['body'] = content.xpath('p/strong/text()').extract()
+            yield item
